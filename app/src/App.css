@@ -81,3 +81,13 @@ p {
   background: rgba(0, 0, 0, 0.4);
   height: 100vh;
 }
+
+@media (max-width: 500px) {
+  button {
+    width: 21%;
+  }
+
+  p{
+    margin-top: 50%;
+  }
+}
