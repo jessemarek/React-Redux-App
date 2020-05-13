@@ -20,6 +20,9 @@ import './index.css'
 
 const store = createStore(rootReducer, applyMiddleware(thunk, logger))
 
+//API base URL
+export const baseURL = 'https://api.chucknorris.io/jokes'
+
 ReactDOM.render(
   <Provider store={store}>
     <App />
