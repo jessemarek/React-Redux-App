@@ -10,7 +10,7 @@ import thunk from 'redux-thunk'
 import logger from 'redux-logger'
 
 //Reducers
-import { combineReducers as rootReducer } from './store/reducers'
+import rootReducer from './store/reducers'
 
 //Components
 import App from './App'
