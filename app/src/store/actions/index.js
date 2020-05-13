@@ -26,7 +26,7 @@ export const fetchFact = (category) => {
     return dispatch => {
         dispatch({ type: FETCH_FACT_START })
 
-        axios.get(`${baseURL}/${category}`)
+        axios.get(`${baseURL}/random${category}`)
             .then(res => {
                 dispatch({ type: FETCH_FACT_SUCCESS, payload: res.data.value })
             })
@@ -36,4 +36,11 @@ export const fetchFact = (category) => {
             })
     }
 
+}
+
+export const CHANGE_CATEGORY = 'CHANGE_CATEGORY'
+export const changeCategory = category => {
+    return dispatch => {
+        dispatch({ type:'CHANGE_CATEGORY', payload: category })
+    }
 }

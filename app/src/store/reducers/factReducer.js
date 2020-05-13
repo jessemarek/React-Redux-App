@@ -1,4 +1,11 @@
-import { FETCH_CATEGORY_START, FETCH_CATEGORY_SUCCESS, FETCH_FACT_START, FETCH_FACT_SUCCESS } from "../actions"
+import { 
+    FETCH_CATEGORY_START, 
+    FETCH_CATEGORY_SUCCESS, 
+    FETCH_FACT_START, 
+    FETCH_FACT_SUCCESS,
+    CHANGE_CATEGORY
+
+} from "../actions"
 
 export const initialState = {
     isFetching: false,
@@ -35,6 +42,12 @@ export const factReducer = (state = initialState, action) => {
                 ...state,
                 currentFact: action.payload,
                 isFetching: false
+            }
+
+        case CHANGE_CATEGORY:
+            return {
+                ...state,
+                currentCategory: action.payload
             }
 
         default:

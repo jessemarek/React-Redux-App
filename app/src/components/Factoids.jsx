@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { fetchCategories, fetchFact } from '../store/actions'
+import { fetchCategories, fetchFact, changeCategory } from '../store/actions'
 
 //Components
 import CategoryButton from './CategoryButton'
@@ -14,7 +14,8 @@ const Factoids = props => {
         currentCategory,
         errors,
         fetchCategories,
-        fetchFact
+        fetchFact,
+        changeCategory
 
     } = props
 
@@ -23,22 +24,38 @@ const Factoids = props => {
     }, [fetchCategories])
 
     useEffect(() => {
-        fetchFact(currentCategory === '' ? 'random' : `random?category=${currentCategory}`)
+        fetchFact(currentCategory === '' ? '' : `?category=${currentCategory}`)
     }, [currentCategory, fetchFact])
 
     return (
         <div>
             <h1>Chuck Norris Factoids</h1>
-            {
-               !isFetching && 
-               categories && 
-               categories.map((item, idx) => <CategoryButton key={idx} name={item} />)
-            }
+            <div className="category-btns">
+                <h3>Categories</h3>
+                {
+                    categories &&
+                    categories.map((item, idx) => 
+                        <CategoryButton 
+                            key={idx} 
+                            currentCategory={currentCategory} 
+                            changeCategory={changeCategory}
+                            name={item} 
+                        />)
+                }
+            </div>
             {isFetching && <h3>Fetching Data...</h3>}
             {
                 !isFetching &&
                 currentFact &&
-                <p>{currentFact}</p>
+                <div>
+                    <p>{currentFact}</p>
+                    <button 
+                        className="new-fact" 
+                        onClick={() => fetchFact(currentCategory === '' ? '' : `?category=${currentCategory}`)}
+                    >
+                        Fetch New Fact
+                    </button>
+                </div>
             }
         </div>
     )
@@ -54,4 +71,7 @@ const mapStateToProps = state => {
 
 }
 
-export default connect(mapStateToProps, { fetchCategories, fetchFact })(Factoids)
+export default connect(
+    mapStateToProps,
+    { fetchCategories, fetchFact, changeCategory })
+    (Factoids)

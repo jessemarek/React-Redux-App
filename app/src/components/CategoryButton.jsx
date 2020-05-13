@@ -1,9 +1,15 @@
 import React from 'react'
 
+
 const CategoryButton = props => {
 
     return(
-        <button>{props.name}</button>
+        <button 
+            className={props.name === props.currentCategory ? 'active' : ''}
+            onClick={e => props.changeCategory(props.name)}
+        >
+            {props.name}
+        </button>
     )
 }
 
