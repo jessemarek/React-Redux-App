@@ -31,7 +31,6 @@ const Factoids = props => {
         <div>
             <h1>Chuck Norris Factoids</h1>
             <div className="category-btns">
-                <h3>Categories</h3>
                 {
                     categories &&
                     categories.map((item, idx) => 
